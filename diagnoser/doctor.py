@@ -28,8 +28,8 @@ def remedy(case):
 	}
 	herbs = []
 	
-	for symptoms in features['symptoms']:
-		herbs+=remedies.get(symptoms,None)
+	for symptom in features['symptoms']:
+		herbs.append(remedies.get(symptom,None))
 	herbs = set(herbs)
 	
 	remedyStream = []
