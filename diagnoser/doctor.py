@@ -23,22 +23,25 @@ def remedy(case):
 	}
 	preparations = {
 		'Dandylon':'Boil Dandylon leaves',
-		'Pear leaves':'Roast and inhale pear leaves'
+		'Pear leaves':'Roast and inhale pear leaves',
+		'Cocoa leaves':'Smoke cocoa leaves'
 	}
-	remedy = {
-		'message':'The ancestors have spoken',
-		'herbs':[],
-		'preparations':[]
-	}
+	remedy = {'herbs':[],'preparations':[],'message':None}
 	
 	for symptoms in features['symptoms']:
 		remedy['herbs']+=remedies.get(symptoms,None)
 	remedy['herbs'] = set(remedy['herbs'])
 	
-	for herb in remedy['herbs']:
-		preparation = preparations.get(herb,None)
-		if preparation:
+	if remedy['herbs']:
+		remedy['message'] = 'The ancestors have spoken'
+		for herb in remedy['herbs']:
+			preparation = preparations.get(herb)
 			remedy['preparations'].append(preparation) 
+	else:
+		remedy['message'] = 'The ancestors are silent on this one'
+		remedy.pop('herbs')
+		remedy.pop('preparations')
+	
 	return 	remedy
 
 	
