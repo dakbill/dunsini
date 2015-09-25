@@ -29,7 +29,7 @@ def remedy(case):
 	herbs = []
 	
 	for symptom in features['symptoms']:
-		herbs.append(remedies.get(symptom,None))
+		herbs += remedies.get(symptom,None)
 	herbs = set(herbs)
 	
 	remedyStream = []
@@ -38,7 +38,8 @@ def remedy(case):
 		for herb in herbs:
 			remedyStream.append({'image':'http://placehold.it/100X100'}) 
 			preparation = preparations.get(herb)
-			remedyStream.append({'message': preparation }) 
+			if preparation:
+				remedyStream.append({'message': preparation }) 
 	else:
 		remedyStream.append({'message': 'The ancestors are silent on this one'}) 
 	return 	remedyStream
