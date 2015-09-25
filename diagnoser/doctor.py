@@ -38,7 +38,7 @@ def remedy(case):
 		for herb in herbs:
 			remedyStream.append({'image':'http://placehold.it/100X100'}) 
 			preparation = preparations.get(herb)
-			remedyStream.append({'message':preparation}) 
+			remedyStream.append({'message': preparation }) 
 	else:
 		remedyStream.append({'message': 'The ancestors are silent on this one'}) 
 	return 	remedyStream

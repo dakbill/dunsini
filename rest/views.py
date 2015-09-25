@@ -15,6 +15,5 @@ def consult(request):
 	if case:
 		message = doctor.remedy(case.lower())
 	else:
-		message = {'message':'Please state your [case]'}
-	
+		message = [{'message':'Please state your [case]'}]
 	return Response(message)
