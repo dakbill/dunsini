@@ -26,22 +26,21 @@ def remedy(case):
 		'Pear leaves':'Roast and inhale pear leaves',
 		'Cocoa leaves':'Smoke cocoa leaves'
 	}
-	remedy = {'herbs':[],'preparations':[],'message':None}
+	herbs = []
 	
 	for symptoms in features['symptoms']:
-		remedy['herbs']+=remedies.get(symptoms,None)
-	remedy['herbs'] = set(remedy['herbs'])
+		herbs+=remedies.get(symptoms,None)
+	herbs = set(herbs)
 	
-	if remedy['herbs']:
-		remedy['message'] = 'The ancestors have spoken'
-		for herb in remedy['herbs']:
+	remedyStream = []
+	if herbs:
+		remedyStream.append({'message': 'The ancestors have spoken'})
+		for herb in herbs:
+			remedyStream.append({'image':'http://placehold.it/100X100'}) 
 			preparation = preparations.get(herb)
-			remedy['preparations'].append(preparation) 
+			remedyStream.append({'preparation':preparation}) 
 	else:
-		remedy['message'] = 'The ancestors are silent on this one'
-		remedy.pop('herbs')
-		remedy.pop('preparations')
-	
-	return 	remedy
+		remedyStream.append({'message': 'The ancestors are silent on this one'}) 
+	return 	remedyStream
 
 	
